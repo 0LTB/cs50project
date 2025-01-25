@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+    <title>Result</title>
+
+{% endblock %}
+
+{% block body %}
+
+<form action="/result/{{seq}}" method="post">
+    <h2>Send the following link to your friends</h2>
+    <h4><a href = http://127.0.0.1:5000/result/{{seq}}> result/{{seq}}</a></h4>    
+    <table>
+      <tr>
+        <th> Select </th>
+        <th> Name </th>
+        <th> Address </th>
+        <th> Votes </th>
+      </tr>
+      {% for i in pubs_list %}
+        <tr>
+          <!-- ><td class = "image"><img src={{i[4]}} alt={{i[1]}}></td></!-->
+        </tr> 
+        <tr>
+          <td><input type="radio" id="{{i[1]}}" name="preference" value="{{ i[0] }}"></td>
+          <td><a href = {{i[3]}} target="_blank">{{ i[1] }}</a></td>
+          <td>{{ i[2] }}</td>                             
+          <td>{{ i[4] }}</td>
+          <td>{{ i[5] }}</td>
+        </tr>  
+      {% endfor %}                       
+    </table>
+    <input type="submit" value="Submit">
+</form>
+<p></p>
+<form action="/" method="get">
+    <input type="button" value="Back"></button>
+</form>
+
+{% endblock %}

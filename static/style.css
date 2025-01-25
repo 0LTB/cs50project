@@ -1,0 +1,12 @@
+body {
+    background-color: aquamarine;
+}
+
+.image {
+    width: 100 px;
+    height: auto;
+}
+
+img {
+    object-fit: contain;
+}
