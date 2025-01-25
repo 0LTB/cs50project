@@ -13,7 +13,9 @@
     <h4><a href = http://127.0.0.1:5000/result/{{seq}}> result/{{seq}}</a></h4>    
     <table>
       <tr>
+        {% if not session["voted"] %}
         <th> Select </th>
+        {% endif %}
         <th> Name </th>
         <th> Address </th>
         <th> Votes </th>
@@ -23,19 +25,30 @@
           <!-- ><td class = "image"><img src={{i[4]}} alt={{i[1]}}></td></!-->
         </tr> 
         <tr>
+          {% if not session["voted"] %}
           <td><input type="radio" id="{{i[1]}}" name="preference" value="{{ i[0] }}"></td>
+          {% endif %}
           <td><a href = {{i[3]}} target="_blank">{{ i[1] }}</a></td>
           <td>{{ i[2] }}</td>                             
           <td>{{ i[4] }}</td>
-          <td>{{ i[5] }}</td>
         </tr>  
       {% endfor %}                       
     </table>
-    <input type="submit" value="Submit">
+
+    {% if not session["voted"] %}
+    <input type="submit" value="Vote">
+    {% endif %}
+</form>
+    {% if session["voted"] %}
+        <h3>Thank you for your vote</h3>
+    {% endif %}    
+
+<form action="/result/{{seq}}" method="get">
+    <input type="submit" value="Refresh">
 </form>
 <p></p>
 <form action="/" method="get">
-    <input type="button" value="Back"></button>
+    <input type="submit" value="New poll"></button>
 </form>
 
 {% endblock %}
