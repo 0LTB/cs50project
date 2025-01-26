@@ -1,7 +1,0 @@
-CREATE TABLE pubs (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(80) NOT NULL,
-    address VARCHAR(50),
-    web VARCHAR(300),
-    picture VARCHAR(400)
-);
