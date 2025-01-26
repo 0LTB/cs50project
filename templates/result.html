@@ -8,9 +8,11 @@
 
 {% block body %}
 
+<h2>Send the following link to your friends</h2>
+<h4><a href = http://127.0.0.1:5000/result/{{seq}}> result/{{seq}}</a></h4>
+
 <form action="/result/{{seq}}" method="post">
-    <h2>Send the following link to your friends</h2>
-    <h4><a href = http://127.0.0.1:5000/result/{{seq}}> result/{{seq}}</a></h4>    
+        
     <table>
       <tr>
         {% if not session["voted"] %}

@@ -52,7 +52,23 @@ def result(seq):
         else:
             return redirect(url_for("index"))
 
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        name = request.form.get("name")
+        address = request.form.get("address")
+        web = request.form.get("web")
+        if not name or not address or not web:
+            return render_template("add.html", error="Please fill in all fields.")
+        pub_list = db_conn.execute_query("SELECT name FROM pubs", fetchall=True)
+        for pub in pub_list:
+            if name == pub[0]:
+                message = "Pub already in database."
+                return render_template("add.html", message=message)
+        db_conn.execute_query("INSERT INTO pubs (name, address, web) VALUES (%s, %s, %s);", (name, address, web))
+        return redirect(url_for("index"))
 
+    return render_template("add.html")
 
 
 if __name__ == '__main__':

@@ -14,7 +14,6 @@
         <th> Select </th>
         <th> Name </th>
         <th> Address </th>
-        <th> Votes </th>
       </tr>
       {% for i in pubs_list %}
         <tr>
@@ -30,5 +29,9 @@
     </table>
     <input type="submit" value="Submit">
 </form>
+
+<p></p>
+
+<button onclick="location.href='/add'">Add new pub</button>
 
 {% endblock %}
