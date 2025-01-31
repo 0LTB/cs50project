@@ -7,31 +7,45 @@
 {% endblock %}
 
 {% block body %}
+<div class="mainContainer">
+  <form action="/" method="post">  
+  <div class="topSection">
+    <div class="left">
+      <div class="infoBox">
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% else %}
+        <div class="selectPub">Choose a pub</div>  
+        {% endif %}            
+        <div class="sendLinkText">Send link to your friends: </div>
+        <div class="link"><a href = http://127.0.0.1:5000/result/{{seq}}> result/{{seq}}</a></div>  
+      </div>
+    </div>
 
-<form action="/" method="post">    
-    <table>
-      <tr>
-        <th> Select </th>
-        <th> Name </th>
-        <th> Address </th>
-      </tr>
-      {% for i in pubs_list %}
+    <div class="buttonArea">
+      <button class="btn addRedirectButton" name="add_pub">Add pub</button>
+    </div>
+  </div>
+   
+    <table class="table indexTable">
+      <thead>
         <tr>
-          <!-- ><td class = "image"><img src={{i[4]}} alt={{i[1]}}></td></!-->
-        </tr> 
-        <tr>
-          <td><input type="radio" id="{{i[1]}}" name="preference" value="{{ i[0] }}"></td>
-          <td><a href = {{i[3]}} target="_blank">{{ i[1] }}</a></td>
-          <td>{{ i[2] }}</td>                             
-          <td>{{ i[5] }}</td>
-        </tr>  
-      {% endfor %}                       
+          <th>Vote</th>
+          <th> Name </th>
+          <th class="addressCell"> Address </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in pubs_list %}
+          <tr>
+            <td class="voteCell"><button class="btn voteButton" type="submit" name="preference" value="{{ i[0] }}"><div class="voteButtonText">&#8250</div></button></td>
+            <td><a href = {{i[3]}} target="_blank">{{ i[1] }}</a></td>
+            <td class="addressCell">{{ i[2] }}</td>                             
+            <td><a href="https://www.google.com/search?q={{ i[1] }}" target="_blank">Google it!</button></td>
+          </tr>  
+        {% endfor %}                       
+      </tbody>
     </table>
-    <input type="submit" value="Submit">
-</form>
-
-<p></p>
-
-<button onclick="location.href='/add'">Add new pub</button>
-
+  </form>
+</div>
 {% endblock %}

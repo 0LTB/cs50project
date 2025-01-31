@@ -7,28 +7,43 @@
 {% endblock %}
 
 {% block body %}
-<h2>Add new pub to database</h2>
-{% if message %}
-    <h3>{{ message }}</h3>
-{% endif %}
-<h4></h4>
+<div class="mainContainer">
+  <form action="/add" method="post">
+    <div class="topSection">
+      <div class="left">
+        <div class="infoBox">
+          {% if message %}
+          <div class="error"><h3>{{ message }}</h3></div>
+          {% endif %}
+          <div class="addPubText"><h2>Add new pub to database</h2></div>
+          
+        </div>
+      </div> 
+    
 
-<form action="/add" method="post">
-    <table>
-      <tr>
-        <th> Name </th>
-        <th> Address </th>
-        <th> Web </th>
-      </tr>
-      <tr>
-        <th><input type="text" name="name"></th>
-        <th><input type="text" name="address"></th>
-        <th><input type="text" name="web"></th>
-      </tr>
-      <tr>
-      <th><button type="submit">Add</button></th>
-      </tr>
-      </table>
-</form>
-<button onclick="location.href='/'">Back</button>
+      <div class="buttonArea">
+        <button class="btn backButton" onclick="location.href='/'">Back</button>
+        <button class="btn addButton" type="submit">Add</button>
+      </div>
+    </div>
+      
+
+    <table class="table inputTable">
+      <thead>
+        <tr>
+          <th> Name </th>
+          <th> Address </th>
+          <th> Link </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input class="inputField" type="text" name="name" required></td>
+          <td><input class="inputField" type="text" name="address" required></td>
+          <td><input class="inputField" type="text" name="web" required></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
 {% endblock %}

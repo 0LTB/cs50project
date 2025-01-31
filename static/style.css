@@ -1,12 +1,250 @@
 body {
-    background-color: aquamarine;
+    background-color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+    color: rgb(235, 231, 231)
 }
 
-.image {
-    width: 100 px;
-    height: auto;
+.mainContainer {
+    width: 75%;
+    margin:auto;
+    min-width: 800px;
 }
 
-img {
-    object-fit: contain;
+a {
+    color: yellow;
+    text-decoration: none;
+    &:visited {
+        color: yellow;
+    }
+    &:hover {
+        color: rgb(180, 180, 2);
+    }
+    &:focus {
+        color: rgb(180, 180, 2);
+    }
+    
+}
+
+input[type="radio"] {
+    accent-color: yellow; 
+}
+
+.table {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    text-align: left;
+    border: 6px solid rgba(255, 255, 0, 0.575);
+    border-radius: 40px;
+    
+
+    tr {                
+        td {
+            padding: 6px;
+            border-right: 0px;
+        }   
+
+        &:hover{
+            td {
+                background-color: rgba(204, 204, 6, 0.336);
+            }
+        }
+    }
+
+    thead {
+        th {
+            padding-bottom: 10px;
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                height: 28x;
+
+                .voteButton {
+                    width: 50x;
+                    height: 25px;
+                    border-radius: 8px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 20px;
+                    padding-left: 7px;
+                    padding-bottom: 4px;
+                    letter-spacing: 2px;
+                    cursor: pointer;
+                    color: white;
+                    text-transform: uppercase;
+                    background-color: rgba(150, 247, 182, 0.247);
+                    border: 3px solid rgb(75, 177, 92);
+                    &:hover {
+                    background-color: rgba(75, 177, 92, 0.247);
+                    } 
+                }
+            }
+            .voteCell {
+                width: 28px;
+            }
+
+            .voteButtonText {
+                display:flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+        }
+    }
+}
+
+.resultTable {
+    tbody tr:nth-child(odd) {
+        background-color: rgba(204, 204, 6, 0.123);}
+}
+
+.indexTable {
+    tbody tr:nth-child(odd) {
+        background-color: rgba(204, 204, 6, 0.123);}
+}
+
+.inputTable {
+    tbody {
+        tr {
+            td {
+                padding: 0px;            
+
+                .inputField {
+                    width: 250px;
+                    }
+                }
+            }
+        }
+    }
+
+
+.topSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .left {
+        flex-grow: 1;
+
+        .infoBox {
+            width: fit-content;
+            border: 3px solid rgb(75, 177, 92);
+            border-radius: 8px;
+            padding: 15px 30px;
+            background-color: rgba(150, 247, 182, 0.247);
+    
+            .thanks {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .error {
+                font-size: 16px;
+                margin-bottom: 8px;
+                color:rgb(163, 30, 41)
+            }
+            
+            .selectPub {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+        
+            .sendLinkText {
+                font-size: 22px;
+                display: inline-block;
+            }
+    
+            .link {
+                font-size: 22px;
+                display: inline-block;
+            }
+    }
+    }
+    
+
+    .buttonArea {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        .btn {
+            width: 130px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .submitButton {
+            background-color: rgba(150, 247, 182, 0.247);
+            border: 3px solid rgb(75, 177, 92);
+            &:hover {
+                background-color: rgba(75, 177, 92, 0.247);
+            }
+        }
+
+        .addRedirectButton {
+            background-color: rgba(30, 159, 163, 0.247);
+            border: 3px solid rgb(30, 159, 163);
+            &:hover {
+                background-color: rgba(30, 159, 163, 0.10);
+            }
+        }
+
+        .refreshButton {
+            background-color: rgba(30, 159, 163, 0.247);
+            border: 3px solid rgb(30, 159, 163);
+            &:hover {
+                background-color: rgba(30, 159, 163, 0.10);
+            }
+        }
+
+        .voteButton {
+            background-color: rgba(150, 247, 182, 0.247);
+            border: 3px solid rgb(75, 177, 92);
+            &:hover {
+                background-color: rgba(75, 177, 92, 0.247);
+            }
+        }
+        .newPollButton {
+            background-color: rgba(150, 247, 182, 0.247);
+            border: 3px solid rgb(75, 177, 92);
+            &:hover {
+                background-color: rgba(150, 247, 182, 0.10);
+            }
+        }
+
+        .backButton {
+            background-color: rgba(163, 30, 41, 0.247);
+            border: 3px solid rgb(163, 30, 41);
+            &:hover {
+                background-color: rgba(163, 30, 41, 0.10);
+            }
+        }
+
+        .addButton {
+            background-color: rgba(30, 159, 163, 0.247);
+            border: 3px solid rgb(30, 159, 163);
+            &:hover {
+                background-color: rgba(30, 159, 163, 0.10);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .addressCell {
+     display: none;
+    }
 }

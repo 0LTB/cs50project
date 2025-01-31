@@ -5,52 +5,63 @@
     <title>Result</title>
 
 {% endblock %}
-
 {% block body %}
+<div class="mainContainer">
+  <div class="topSection">
+    <div class="left">
+      <div class="infoBox">
+        {% if session["voted"] %}
+        <div class="thanks">Voted!</div>
+        {% endif %}  
 
-<h2>Send the following link to your friends</h2>
-<h4><a href = http://127.0.0.1:5000/result/{{seq}}> result/{{seq}}</a></h4>
-
-<form action="/result/{{seq}}" method="post">
-        
-    <table>
+        {% if error %}
+        <div class="error"> {{error}}</div>
+        {% endif %}  
+    
+        <div class="sendLinkText">Send link to your friends: </div>
+        <div class="link"><a href = http://127.0.0.1:5000/result/{{seq}}> result/{{seq}}</a></div>  
+      </div>
+    </div>
+    
+    <div class="buttonArea">
+      <form action="/result/{{seq}}" method="get">
+        <input class="btn refreshButton" type="submit" value="Refresh">
+      </form>
+      <form action="/" method="post">
+        <input class="btn newPollButton" type="submit" name="new_poll" value="New poll">
+      </form>
+      <form action="/result/{{seq}}" method="post">
+        {% if not session["voted"] %}
+        <!-- <input class="btn voteButton" type="submit" value="Vote"> -->
+        {% endif %}
+    </div>
+  </div>  
+          
+  <table class="table resultTable">
+    <thead>
       <tr>
         {% if not session["voted"] %}
-        <th> Select </th>
+        <th>Vote</th>
         {% endif %}
         <th> Name </th>
         <th> Address </th>
         <th> Votes </th>
       </tr>
+    </thead>
+    <tbody>
       {% for i in pubs_list %}
-        <tr>
-          <!-- ><td class = "image"><img src={{i[4]}} alt={{i[1]}}></td></!-->
-        </tr> 
-        <tr>
-          {% if not session["voted"] %}
-          <td><input type="radio" id="{{i[1]}}" name="preference" value="{{ i[0] }}"></td>
-          {% endif %}
-          <td><a href = {{i[3]}} target="_blank">{{ i[1] }}</a></td>
-          <td>{{ i[2] }}</td>                             
-          <td>{{ i[4] }}</td>
-        </tr>  
+      <tr>
+        {% if not session["voted"] %}
+        <!-- <td><input type="radio" id="{{i[1]}}" name="preference" value="{{ i[0] }}"></td> -->
+        <td class="voteCell"><button class="btn voteButton" type="submit" name="preference" value="{{ i[0] }}"><div class="voteButtonText">&#8250</div></button></td>
+        {% endif %}
+        <td><a href = {{i[3]}} target="_blank">{{ i[1] }}</a></td>
+        <td>{{ i[2] }}</td>                             
+        <td>{{ i[4] }}</td>
+      </tr>  
       {% endfor %}                       
-    </table>
-
-    {% if not session["voted"] %}
-    <input type="submit" value="Vote">
-    {% endif %}
-</form>
-    {% if session["voted"] %}
-        <h3>Thank you for your vote</h3>
-    {% endif %}    
-
-<form action="/result/{{seq}}" method="get">
-    <input type="submit" value="Refresh">
-</form>
-<p></p>
-<form action="/" method="get">
-    <input type="submit" value="New poll"></button>
-</form>
-
+    </tbody>
+  </table>
+  </form>
+</div>
 {% endblock %}
