@@ -4,10 +4,21 @@ body {
     color: rgb(235, 231, 231)
 }
 
+.title {
+    font-size: 40px;
+    color: #3498db;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
 .mainContainer {
     width: 75%;
     margin:auto;
-    min-width: 800px;
+    min-width: 400px;
 }
 
 a {
@@ -22,11 +33,6 @@ a {
     &:focus {
         color: rgb(180, 180, 2);
     }
-    
-}
-
-input[type="radio"] {
-    accent-color: yellow; 
 }
 
 .table {
@@ -37,18 +43,11 @@ input[type="radio"] {
     border: 6px solid rgba(255, 255, 0, 0.575);
     border-radius: 40px;
     
-
     tr {                
         td {
             padding: 6px;
             border-right: 0px;
-        }   
-
-        &:hover{
-            td {
-                background-color: rgba(204, 204, 6, 0.336);
-            }
-        }
+        }           
     }
 
     thead {
@@ -83,26 +82,28 @@ input[type="radio"] {
                     } 
                 }
             }
+
             .voteCell {
                 width: 28px;
-            }
+            }   
 
             .voteButtonText {
                 display:flex;
                 justify-content: center;
                 align-items: center;
-
             }
         }
     }
 }
 
-.resultTable {
-    tbody tr:nth-child(odd) {
-        background-color: rgba(204, 204, 6, 0.123);}
-}
-
-.indexTable {
+.coloringTable {
+    tr {
+        &:hover{
+            td {
+                background-color: rgba(204, 204, 6, 0.336);
+            }
+        }
+    }
     tbody tr:nth-child(odd) {
         background-color: rgba(204, 204, 6, 0.123);}
 }
@@ -114,7 +115,7 @@ input[type="radio"] {
                 padding: 0px;            
 
                 .inputField {
-                    width: 250px;
+                    width: fit-content;
                     }
                 }
             }
@@ -131,23 +132,18 @@ input[type="radio"] {
     .left {
         flex-grow: 1;
 
-        .infoBox {
+        .infoBox, .infoBoxError {
             width: fit-content;
             border: 3px solid rgb(75, 177, 92);
             border-radius: 8px;
             padding: 15px 30px;
             background-color: rgba(150, 247, 182, 0.247);
+            margin-right: 10px;
     
             .thanks {
                 font-size: 16px;
                 margin-bottom: 8px;
-            }
-            
-            .error {
-                font-size: 16px;
-                margin-bottom: 8px;
-                color:rgb(163, 30, 41)
-            }
+            }           
             
             .selectPub {
                 font-size: 16px;
@@ -163,7 +159,22 @@ input[type="radio"] {
                 font-size: 22px;
                 display: inline-block;
             }
-    }
+
+            .addPubText {
+                font-size: 16px;
+                display: inline-block;
+            }
+
+            .error {
+                font-size: 22px;
+                width: fit-content;
+            }
+        }
+
+        .infoBoxError {
+            border: 3px solid rgb(163, 30, 41);
+            background-color: rgba(163, 30, 41, 0.247);
+        }
     }
     
 
@@ -243,8 +254,55 @@ input[type="radio"] {
     }
 }
 
-@media only screen and (max-width: 800px) {
+.wrapAddData {
+    display: flex;
+    width:fit-content;
+    flex-wrap: wrap;
+    margin:auto;
+    gap: 10px;    
+}
+.addData {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 5px;
+    margin-bottom: 8px;  
+}
+
+@media only screen and (max-width: 750px) {
+    .topSection{
+        align-content: center;
+        flex-direction: column;
+
+        .infoBox, .infoBoxError {
+            margin-right: 0px;
+        }
+    }
+    .left {
+        margin-bottom: 20px;
+    }
+    
+    .tableWrapper {
+        width: 100%;
+    }
+
     .addressCell {
      display: none;
+    }
+    
+    .voteCell {
+        width: 1%
+    }
+
+    .nameCell {
+        width: fit-content;
+    }
+
+    .googleCell {
+        width: fit-content;
+    }
+
+    .inputField {
+        width: fit-content;
     }
 }

@@ -1,5 +1,7 @@
 import psycopg2
 
+"""This script loads the csv file with initial pubs data into the database"""
+
 
 connect = psycopg2.connect(database="postgres", user="postgres", password="datadatabejs", host="localhost", port="5432")
 

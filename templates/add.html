@@ -8,42 +8,40 @@
 
 {% block body %}
 <div class="mainContainer">
-  <form action="/add" method="post">
     <div class="topSection">
       <div class="left">
-        <div class="infoBox">
-          {% if message %}
-          <div class="error"><h3>{{ message }}</h3></div>
-          {% endif %}
-          <div class="addPubText"><h2>Add new pub to database</h2></div>
-          
-        </div>
+        {% if message %}
+          <div class="infoBoxError">
+            <div class="error">{{ message }}</div>
+          </div>
+        {% endif %}
       </div> 
     
-
+      
       <div class="buttonArea">
-        <button class="btn backButton" onclick="location.href='/'">Back</button>
-        <button class="btn addButton" type="submit">Add</button>
+        <form action="/" method="get">
+          <button class="btn backButton">Back</button>
+        </form>
+        <form action="/add" method="post">
+        <button class="btn addButton" type="submit">Add</button> 
       </div>
     </div>
-      
-
-    <table class="table inputTable">
-      <thead>
-        <tr>
-          <th> Name </th>
-          <th> Address </th>
-          <th> Link </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input class="inputField" type="text" name="name" required></td>
-          <td><input class="inputField" type="text" name="address" required></td>
-          <td><input class="inputField" type="text" name="web" required></td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
+    
+    
+    <div class="wrapAddData">
+      <div class="addData">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" autofocus required/>
+      </div>
+      <div class="addData">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" required />
+      </div>
+      <div class="addData">
+        <label for="web">Web</label>
+        <input type="text" name="web" id="web" required/>
+        </form>
+      </div>
+    </div>
 </div>
 {% endblock %}

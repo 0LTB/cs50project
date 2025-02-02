@@ -2,11 +2,11 @@ from flask import Flask, render_template, request, redirect, session, url_for
 from helpers import db_conn, str_generator as str_gen
 
 
-
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 app.secret_key = "SECRECY_IS_THE_KEY"
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -24,17 +24,22 @@ def index():
         return render_template("index.html", pubs_list=pubs_list, seq=session["poll_id"], error=error_message)
 
     if request.method == "POST":
+        # Redirect to create new poll and clear session
         if "new_poll" in request.form:
             session.pop("poll_id", None)
+            session.pop("voted", None)
             return redirect(url_for("index"))
         
         if "add_pub" in request.form:
             return redirect(url_for("add"))
-                        
+
+        # Check if user has voted      
         voted = request.form.get("preference")
         if not voted:
             error = "Please select a pub."
             return redirect(url_for("index", error=error, seq=session["poll_id"]))
+        
+        # Insert vote into database
         db_conn.execute_query("INSERT INTO polls (id, pubs_id, vote) VALUES  (%s, %s, %s);", (session["poll_id"], voted, 1))
         session["voted"] = True
         return redirect(url_for("result", seq=session["poll_id"]))
@@ -62,14 +67,13 @@ def result(seq):
                                         ) polls\
                                         RIGHT JOIN pubs ON pubs.id = polls.pubs_id\
                                         ORDER BY total_votes DESC, pubs.name;", (seq, ), fetchall=True)
-        print(pubs_list)
+
         return render_template("result.html", pubs_list=pubs_list, seq=seq, error=error_message)
 
     # Insert vote into database
     if request.method == "POST": 
         # Redirect to create new poll
         if "new_poll" in request.form:
-            print("Postuje new poll")
             session.pop("poll_id", None)
             return redirect(url_for("index"))
         
@@ -84,7 +88,6 @@ def result(seq):
             return redirect(url_for("result", seq=seq, error=error_select))
         
 
-
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
@@ -93,9 +96,10 @@ def add():
         address = request.form.get("address")
         web = request.form.get("web")
 
-        # Check if fields are empty
+        # Check if all fields are filled in
         if not name or not address or not web:
-            return render_template("add.html", error="Please fill in all fields.")
+            print("Please fill in all fields.")
+            return render_template("add.html", message="Please fill in all fields.")
         
         # Check if pub already in database
         pub_list = db_conn.execute_query("SELECT name FROM pubs", fetchall=True)
