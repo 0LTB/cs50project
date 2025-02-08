@@ -12,6 +12,8 @@
       <div class="infoBox">
         {% if session["voted"] %}
         <div class="thanks">Voted!</div>
+        {% else %}
+          <div class="selectPub">Choose a pub</div>
         {% endif %}  
 
         {% if error %}

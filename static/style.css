@@ -122,7 +122,6 @@ a {
         }
     }
 
-
 .topSection {
     display: flex;
     flex-direction: row;
@@ -177,7 +176,6 @@ a {
         }
     }
     
-
     .buttonArea {
         display: flex;
         flex-direction: row;
@@ -261,12 +259,21 @@ a {
     margin:auto;
     gap: 10px;    
 }
+
 .addData {
     display: flex;
     flex-direction: column;
     width: 250px;
     gap: 5px;
     margin-bottom: 8px;  
+}
+
+input[type=text] {
+    outline: none;
+  }
+
+input[type=text]:focus {
+    border: solid rgb(180, 180, 2);
 }
 
 @media only screen and (max-width: 750px) {
@@ -278,6 +285,7 @@ a {
             margin-right: 0px;
         }
     }
+    
     .left {
         margin-bottom: 20px;
     }
