@@ -1,6 +1,6 @@
 import psycopg2
 
-"""Helper functions to manage database connections and queries."""
+"""Helper function to manage database connections and queries."""
 
 def execute_query(query, params=None, fetchone=False, fetchall=False):
     """Helper function to execute a query with automatic connection and cursor management."""

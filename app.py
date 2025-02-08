@@ -98,7 +98,6 @@ def add():
 
         # Check if all fields are filled in
         if not name or not address or not web:
-            print("Please fill in all fields.")
             return render_template("add.html", message="Please fill in all fields.")
         
         # Check if pub already in database
